@@ -1,0 +1,78 @@
+{% load static %}
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Accommodation Recommendations</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome & Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap & Custom Styles -->
+    <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero-header position-relative text-center text-white" style="background: url('{% static 'images/hero-bg.jpg' %}') center/cover no-repeat; height: 80vh;">
+        <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
+        <div class="container position-relative py-5">
+            <h1 class="display-3 fw-bold mb-3 animated fadeInDown">Find Your Perfect Stay</h1>
+            <p class="lead animated fadeInUp">Top accommodations tailored for your journey</p>
+            <a href="#packages" class="btn btn-light btn-lg rounded-pill px-4 mt-3 animated fadeIn">Explore Now <i class="bi bi-arrow-down-circle ms-2"></i></a>
+        </div>
+    </div>
+
+    <!-- Accommodation Section -->
+    <div class="container py-5">
+        <div class="card shadow-lg border-0">
+            <img src="img/package-1.jpg" class="card-img-top rounded-top" alt="Thailand Getaway">
+            <div class="card-body p-4">
+                <h1 class="fw-bold text-primary">Thailand Getaway</h1>
+                <p class="text-muted">Duration: 3 days | Suitable for: 2 Person</p>
+                <h3 class="text-success">Price: $149.00</h3>
+                <div class="mb-3">
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star text-warning"></span>
+                </div>
+                <p class="card-text">
+                    Explore the serene beaches of Thailand with this exclusive 3-day package. Enjoy luxurious stays, guided tours, and local cuisine that will leave you enchanted.
+                </p>
+    
+                <h4 class="fw-semibold mt-4">Package Highlights:</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-light">Beachfront hotel accommodation</li>
+                    <li class="list-group-item bg-light">Daily breakfast and dinner</li>
+                    <li class="list-group-item bg-light">City tour with a professional guide</li>
+                    <li class="list-group-item bg-light">Water sports and island hopping</li>
+                </ul>
+    
+                <a href="index.html" class="btn btn-outline-primary mt-4">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Packages
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    {% include 'footer.html' %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

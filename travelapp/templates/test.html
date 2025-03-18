@@ -1,0 +1,47 @@
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+  <div class="container py-5">
+      <div class="row justify-content-center py-5">
+          <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+              <h1 class="display-3 text-white mb-3 animated slideInDown">Enjoy Your Vacation With Us</h1>
+              <p class="fs-4 text-white mb-4 animated slideInDown">Build Memories that last for a life time</p>
+              <div class="position-relative w-75 mx-auto animated slideInDown">
+                <form action="{% url 'search_destinations' %}" method="get">
+                  <input type="text" name="query" required placeholder="Search destinations">
+                  <button type="submit">Search</button>
+              </form>
+              
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Navbar & Hero End -->
+
+<!-- Search results -->
+<div class="row g-4 justify-content-center">
+  {% if destinations %}
+      {% for destination in destinations %}
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="package-item">
+              <div class="overflow-hidden">
+                  {% if destination.img %}
+                  <img class="img-fluid" src="{{ destination.img.url }}" alt="{{ destination.name }}">
+                  {% endif %}
+              </div>
+              <div class="d-flex border-bottom">
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ destination.name }}</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>{{ destination.duration }}</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>{{ destination.tour_type }}</small>
+              </div>
+              <div class="text-center p-4">
+                  <h3 class="mb-0">${{ destination.price }}</h3>
+                  <p>{{ destination.description }}</p>
+                  <div class="d-flex justify-content-center mb-2">
+                  </div>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  {% elif query %}
+      <p>No destinations found for "<strong>{{ query }}</strong>". Try another location.</p>
+  {% endif %}
+</div>

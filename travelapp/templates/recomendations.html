@@ -1,0 +1,189 @@
+{% load static %}
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Destination Filter</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    {% comment %} <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet"> {% endcomment %}
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Stylesheet -->
+    <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+        /* Ensure the container fits the content without spillage */
+.row.g-4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers content horizontally */
+    gap: 20px; /* Adds space between items */
+    margin-bottom: 50px; /* Adds space at the bottom */
+}
+
+/* Styling each destination card */
+.package-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 350px; /* Limits card size */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.package-item:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Ensure images resize properly */
+.destination-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Buttons */
+.btn {
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+@media (max-width: 768px) {
+    .package-item {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+}
+
+    </style>
+</head>
+
+<body>
+      <!-- Hero Section -->
+      <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white">Destination Filter</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item text-white active">Filter</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <h3 class="mb-4 text-primary">🌍 Find Your Perfect Destination</h3>
+        <form method="GET">
+            <div class="row g-3">
+                <!-- Tour Type -->
+                <div class="col-md-4">
+                    <label for="tourType" class="form-label">Tour Type</label>
+                    <select class="form-select" id="tourType" name="tour_type">
+                        <option value="">All Types</option>
+                        <option value="Romantic">Romantic</option>
+                        <option value="Solo">Solo</option>
+                        <option value="Family">Family</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Business Trip">Business Trip</option>
+                        <option value="Honeymoon">Honeymoon</option>
+                        <option value="Adventure">Adventure</option>
+                    </select>
+                </div>
+    
+                <!-- Accommodation Type -->
+                <div class="col-md-4">
+                    <label for="accommodationType" class="form-label">Accommodation Type</label>
+                    <select class="form-select" id="accommodationType" name="accommodation_type">
+                        <option value="">All Accommodations</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Resort">Resort</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Campsite">Campsite</option>
+                        <option value="Guesthouse">Guesthouse</option>
+                    </select>
+                </div>
+    
+                <!-- State -->
+                <div class="col-md-4">
+                    <label for="state" class="form-label">State/Region</label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="E.g., California, Goa">
+                </div>
+    
+                <!-- Min & Max Price -->
+                <div class="col-md-6">
+                    <label for="minPrice" class="form-label">Min Budget ($)</label>
+                    <input type="number" class="form-control" id="minPrice" name="min_price" placeholder="E.g., 100">
+                </div>
+                <div class="col-md-6">
+                    <label for="maxPrice" class="form-label">Max Budget ($)</label>
+                    <input type="number" class="form-control" id="maxPrice" name="max_price" placeholder="E.g., 5000">
+                </div>
+    
+                <!-- Max Days & Interest -->
+                <div class="col-md-6">
+                    <label for="maxDays" class="form-label">Trip Duration (Max Days)</label>
+                    <input type="number" class="form-control" id="maxDays" name="max_days" placeholder="E.g., 7">
+                </div>
+                <div class="col-md-6">
+                    <label for="interest" class="form-label">Interests & Activities</label>
+                    <input type="text" class="form-control" id="interest" name="interest" placeholder="E.g., Hiking, Beaches">
+                </div>
+    
+                <!-- Buttons -->
+                <div class="col-md-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary px-4">🔍 Apply Filters</button>
+                    <button type="reset" class="btn btn-outline-secondary px-4 ms-2">🔄 Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+
+    <!-- Display Filtered Destinations -->
+<div class="row g-4 justify-content-center">
+    {% if destinations %}
+        {% for destination in destinations %}
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="overflow-hidden rounded-top">
+                    {% if destination.img %}
+                        <img class="img-fluid destination-image w-100" src="{{ destination.img.url }}" alt="{{ destination.name }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                        <img class="img-fluid destination-image w-100" src="{% static 'images/default-placeholder.png' %}" alt="Default Image" style="height: 250px; object-fit: cover;">
+                    {% endif %}
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">{{ destination.name }}</h5>
+                    <div class="d-flex justify-content-center gap-3 my-2">
+                        <span class="badge bg-primary"><i class="fa fa-calendar-alt me-1"></i> {{ destination.duration }} Days</span>
+                        <span class="badge bg-success"><i class="fa fa-user me-1"></i> {{ destination.tour_type }}</span>
+                    </div>
+                    <p class="text-muted">{{ destination.description }}</p>
+                    <h4 class="text-danger">${{ destination.price }}</h4>
+                </div>
+                <div class="card-footer bg-light d-flex justify-content-center">
+                    <a href="{% url 'add_to_favorites' destination.id %}" class="btn btn-sm btn-outline-primary">
+                        <i class="fa fa-heart"></i> Add to Favorites
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+        {% endfor %}
+    {% elif query %}
+        <p class="text-center text-danger fw-bold">No destinations found for "<strong>{{ query }}</strong>". Try another location.</p>
+    {% endif %}
+</div>
+
+
+    {% include 'footer.html' %}
+</body>
+</html>

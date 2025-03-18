@@ -1,0 +1,41 @@
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="text-center">
+            <h6 class="section-title bg-white text-center text-primary px-3">Write a Review</h6>
+            <h1 class="mb-5">Share Your Experience</h1>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: springgreen;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <input type="text" class="form-control border-primary p-3" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control border-primary p-3" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="col-12">
+                    <input type="text" class="form-control border-primary p-3" name="location" placeholder="Location (e.g., New York, USA)" required>
+                </div>
+                <div class="col-12">
+                    <textarea class="form-control border-primary p-3" rows="5" name="review" placeholder="Your Review" required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Submit Review</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Write a Review End -->
+
+<!-- Write a Review End -->
+
+
+    

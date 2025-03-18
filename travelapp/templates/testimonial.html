@@ -1,0 +1,122 @@
+{% load static %}
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Your Testimonials - Travel Agency</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="User testimonials and reviews" name="description">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap Stylesheet -->
+    <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container text-center">
+            <h1 class="display-3 text-white">Your Testimonials</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Testimonials</li>
+                </ol>
+            </nav>
+        </div> 
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} fade show" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="container py-5">
+        <h3 class="mb-4 text-center">Manage Your Reviews</h3>
+        <div class="list-group">
+            {% for review in user_reviews %}
+                <div class="list-group-item d-flex justify-content-between align-items-center shadow-sm rounded p-3">
+                    <div>
+                        <h5>{{ review.name }} <span class="text-muted">({{ review.location }})</span></h5>
+                        <p id="review-text-{{ review.id }}">{{ review.review }}</p>
+                        <small class="text-muted">Submitted on: {{ review.created_at|date:"F d, Y" }}</small>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#editReviewModal"
+                            onclick="loadReview({{ review.id }}, '{{ review.review|escapejs }}')"><i class="fas fa-edit"></i> Edit</button>
+                        <form method="POST" action="{% url 'user_reviews' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="review_id" value="{{ review.id }}">
+                            <input type="hidden" name="action" value="delete">
+                            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                        </form>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center text-muted">No reviews found. Share your experience with us!</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Edit Review Modal -->
+    <div class="modal fade" id="editReviewModal" tabindex="-1" aria-labelledby="editReviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{% url 'user_reviews' %}">
+                    {% csrf_token %}
+                    <input type="hidden" id="review-id" name="review_id">
+                    <input type="hidden" name="action" value="edit">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Edit Your Review</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="review-text" class="form-label">Your Review</label>
+                            <textarea class="form-control" id="review-text" name="review" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Edit Modal -->
+    <script>
+        function loadReview(id, reviewText) {
+            document.getElementById("review-id").value = id;
+            document.getElementById("review-text").value = reviewText;
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+{% include 'footer.html' %}

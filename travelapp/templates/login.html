@@ -1,0 +1,408 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tourist - Travel Agency</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    
+</head>
+<style>
+    body {
+font-family: Arial, sans-serif;
+/* display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center; */
+height: 100vh;
+margin: 0;
+background-color: #f4f4f4;
+margin: 0;
+padding: 0;
+min-height: 100vh;
+background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbCUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D');
+background-size: cover; /* Ensures the image covers the screen */
+background-position: center; /* Centers the image */
+background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+/* Optional: Center the page content */
+.content {
+text-align: center;
+color: white;
+padding: 20px;
+font-family: Arial, sans-serif;
+}
+
+
+
+.form-container {
+width: 400px;
+padding: 20px;
+background: #fff;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+border-radius: 10px;
+}
+
+.form-toggle {
+display: flex;
+justify-content: space-around;
+margin-bottom: 20px;
+}
+
+.form-toggle button {
+padding: 10px 20px;
+border: none;
+background: #86B817;
+color: #fff;
+font-size: 16px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.form-toggle button.active {
+background: #86B817;
+}
+
+.form-content {
+display: flex;
+flex-direction: column;
+}
+
+.form-content.hidden {
+display: none;
+}
+
+.form-content h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.form-content input {
+margin-bottom: 15px;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+.form-content button {
+padding: 10px;
+border: none;
+background: #86B817;
+color: #86B817;;
+font-size: 16px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.form-content p {
+text-align: center;
+margin-top: 10px;
+}
+
+.form-content a {
+color: #86B817;
+text-decoration: none;
+}
+/* Sticky navbar with light black transparent tint */
+.navbar {
+position: relative; /* Makes the navbar fixed to the top */
+font-family: 'Nunito', sans-serif;
+margin-right: 25px;
+padding: 35px 0;
+color: #FFFFFF !important;
+font-size: 18px;
+font-weight: 600;
+outline: none;
+transition: .5s;
+top: 0;
+width: 100%; 
+background-color: rgba(0, 0, 0, 0.7);/* Light black with 70% opacity */
+padding: 10px 20px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+z-index: 1000; /* Ensures it stays above other elements */
+}
+
+#f1 {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+.text-success {
+    color: #86B817 !important;
+}
+button {
+    background-color: #86B817;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    outline: none;
+}
+button:hover {
+    background-color: #86B817;
+}
+button:active {
+    background-color: #86B817;
+} 
+    .btn-success {
+        background-color: #86B817 !important;
+        border-color: #86B817 !important;
+        color: white !important;
+    }
+    .btn-success:hover {
+        background-color: #76A313 !important; /* Optional: hover effect */
+        border-color: #76A313 !important;
+    }
+</style>
+
+
+
+</style>
+
+<body background="">
+    <!-- header start -->
+    <!-- Topbar Start -->
+   
+    <!-- Topbar End -->
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0 ">
+        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="" class="navbar-brand p-0">
+                <h1 class="text-success m-0"><i class="fa fa-map-marker-alt me-3"></i>TourRecom</h1>
+                <!-- <img src="img/logo.png" alt="Logo"> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{% url 'index' %}" class="nav-item nav-link ">Home</a>
+                    <a href="{% url 'personalized_recommendations' %}" class="nav-item nav-link">for you</a>
+                    <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                    <a href="{% url 'filter_destinations' %}" class="nav-item nav-link">Recomendations</a>
+                   
+                    <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                </div>
+                <a href="{% url 'login_view' %}" class="btn btn-success rounded-pill py-2 px-4">Register</a>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar & Hero End -->
+     <!-- header end -->
+
+    <!-- Form Container -->
+    <div class="container" id="f1" style="margin-top: 100px; margin-bottom: 100px;">
+        {% if page == "register" %}
+            <h2 class="text-center mb-4">Register</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                    <p id="registerError" class="text-danger mt-2"></p>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Register</button>
+            </form>
+            <p class="text-center mt-3">Already have an account? <a href="{% url 'login_view' %}">Login here</a></p>
+        {% else %}
+            <h2 class="text-center mb-4">Login</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="login_username" class="form-label">Username</label>
+                    <input type="text" id="login_username" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="login_password" class="form-label">Password</label>
+                    <input type="password" id="login_password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Login</button>
+            </form>
+            <p class="text-center mt-3">Don't have an account? <a href="{%  url 'register_view' %}">Register here</a></p>
+        {% endif %}
+
+        {% if messages %}
+            <ul class="list-unstyled mt-3">
+                {% for message in messages %}
+                    <li class="{% if message.tags == 'success' %}text-success{% else %}text-danger{% endif %}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+        <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="text-white mb-3">Company</h4>
+                        <a class="btn btn-link" href="{% url 'about' %}">About Us</a>
+                        <a class="btn btn-link" href="{% url 'contact' %}">Contact Us</a>
+                        <a class="btn btn-link" href="">Privacy Policy</a>
+                        <a class="btn btn-link" href="">Terms & Condition</a>
+                        <a class="btn btn-link" href="{% url 'contact' %}">FAQs & Help</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="text-white mb-3">Contact</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+    
+                           
+                            Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+        <!-- Footer End -->
+    
+ 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+            
+                document.addEventListener("DOMContentLoaded", function () {
+                    const registerForm = document.querySelector("#registerForm");
+                    const loginForm = document.querySelector("#loginForm");
+                
+                    if (registerForm) {
+                        registerForm.addEventListener("submit", function (e) {
+                            e.preventDefault(); // Prevent default submission
+                            let isValid = true;
+                
+                            // Get form elements
+                            let username = document.getElementById("username").value.trim();
+                            let email = document.getElementById("email").value.trim();
+                            let password = document.getElementById("password").value.trim();
+                            let confirmPassword = document.getElementById("confirm_password").value.trim();
+                            let errorDisplay = document.getElementById("registerError");
+                
+                            // Clear previous error messages
+                            errorDisplay.innerHTML = "";
+                
+                            // Username validation
+                            if (username === "") {
+                                errorDisplay.innerHTML = "Username is required.";
+                                isValid = false;
+                            }
+                
+                            // Email validation (basic regex check)
+                            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                            if (!emailPattern.test(email)) {
+                                errorDisplay.innerHTML = "Enter a valid email address.";
+                                isValid = false;
+                            }
+                
+                            // Password validation
+                            if (password.length < 6) {
+                                errorDisplay.innerHTML = "Password must be at least 6 characters long.";
+                                isValid = false;
+                            }
+                
+                            // Confirm password validation
+                            if (password !== confirmPassword) {
+                                errorDisplay.innerHTML = "Passwords do not match.";
+                                isValid = false;
+                            }
+                
+                            if (isValid) {
+                                registerForm.submit(); // Submit the form if all validations pass
+                            }
+                        });
+                    }
+                
+                    if (loginForm) {
+                        loginForm.addEventListener("submit", function (e) {
+                            e.preventDefault(); // Prevent default submission
+                            let isValid = true;
+                
+                            let username = document.getElementById("login_username").value.trim();
+                            let password = document.getElementById("login_password").value.trim();
+                            let errorDisplay = document.getElementById("loginError");
+                
+                            // Clear previous error messages
+                            errorDisplay.innerHTML = "";
+                
+                            if (username === "") {
+                                errorDisplay.innerHTML = "Username is required.";
+                                isValid = false;
+                            }
+                
+                            if (password === "") {
+                                errorDisplay.innerHTML = "Password is required.";
+                                isValid = false;
+                            }
+                
+                            if (isValid) {
+                                loginForm.submit(); // Submit the form if valid
+                            }
+                        });
+                    }
+                });
+                </script>
+                
+
+</body>
+<!-- Footer -->
+
+
+</html>
